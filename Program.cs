@@ -5,7 +5,7 @@ namespace Expanding_Langton_s_And;
 static class Program {
     static GLSShader shader;
     static Stopwatch stopwatch = new();
-    static float scaleInvert = 10;
+    static float scaleInvert = 400;
     public static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     public static ManualResetEvent manualResetEvent = new ManualResetEvent(true);
     static int steps = 0;
@@ -42,7 +42,10 @@ static class Program {
     static void Render() {
         shader.Use();
         shader.SetMatrix("u_matrix", SMatrix.CreateOrthographic(scaleInvert * GLSWindow.GetWidth() / GLSWindow.GetHeight(), scaleInvert, 0.001f, 1000f), false);
-        LantongsAnt.GetMesh().Flush();
+        GLSMesh mesh = LantongsAnt.GetMesh();
+        mesh.Flush();
+        GC.SuppressFinalize(mesh);
+        GC.Collect();
         Console.WriteLine(steps);
     }
 

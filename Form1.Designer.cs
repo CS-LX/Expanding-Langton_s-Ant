@@ -31,6 +31,9 @@ partial class Form1 {
         rotateButton = new Button();
         minusButton = new Button();
         addButton = new Button();
+        startButton = new Button();
+        pauseButton = new Button();
+        stopBotton = new Button();
         SuspendLayout();
         // 
         // stepsList
@@ -45,6 +48,7 @@ partial class Form1 {
         // 
         // label1
         // 
+        label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         label1.AutoSize = true;
         label1.Location = new Point(9, 342);
         label1.Name = "label1";
@@ -54,6 +58,7 @@ partial class Form1 {
         // 
         // label2
         // 
+        label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
         label2.AutoSize = true;
         label2.Location = new Point(9, 375);
         label2.Name = "label2";
@@ -63,6 +68,7 @@ partial class Form1 {
         // 
         // colorButton
         // 
+        colorButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         colorButton.Location = new Point(54, 371);
         colorButton.Name = "colorButton";
         colorButton.Size = new Size(172, 29);
@@ -72,6 +78,7 @@ partial class Form1 {
         // 
         // rotateButton
         // 
+        rotateButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         rotateButton.Location = new Point(54, 338);
         rotateButton.Name = "rotateButton";
         rotateButton.Size = new Size(172, 29);
@@ -81,6 +88,7 @@ partial class Form1 {
         // 
         // minusButton
         // 
+        minusButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         minusButton.Location = new Point(191, 303);
         minusButton.Name = "minusButton";
         minusButton.Size = new Size(35, 29);
@@ -90,6 +98,7 @@ partial class Form1 {
         // 
         // addButton
         // 
+        addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
         addButton.Location = new Point(150, 303);
         addButton.Name = "addButton";
         addButton.Size = new Size(35, 29);
@@ -97,11 +106,44 @@ partial class Form1 {
         addButton.Text = "+";
         addButton.UseVisualStyleBackColor = true;
         // 
+        // startButton
+        // 
+        startButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        startButton.Location = new Point(9, 303);
+        startButton.Name = "startButton";
+        startButton.Size = new Size(35, 29);
+        startButton.TabIndex = 7;
+        startButton.Text = "▶️";
+        startButton.UseVisualStyleBackColor = true;
+        // 
+        // pauseButton
+        // 
+        pauseButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        pauseButton.Location = new Point(50, 303);
+        pauseButton.Name = "pauseButton";
+        pauseButton.Size = new Size(35, 29);
+        pauseButton.TabIndex = 8;
+        pauseButton.Text = "⏸️";
+        pauseButton.UseVisualStyleBackColor = true;
+        // 
+        // stopBotton
+        // 
+        stopBotton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+        stopBotton.Location = new Point(91, 303);
+        stopBotton.Name = "stopBotton";
+        stopBotton.Size = new Size(35, 29);
+        stopBotton.TabIndex = 9;
+        stopBotton.Text = "⏸️";
+        stopBotton.UseVisualStyleBackColor = true;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(9F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(235, 413);
+        Controls.Add(stopBotton);
+        Controls.Add(pauseButton);
+        Controls.Add(startButton);
         Controls.Add(addButton);
         Controls.Add(minusButton);
         Controls.Add(rotateButton);
@@ -126,4 +168,7 @@ partial class Form1 {
     private Button rotateButton;
     private Button minusButton;
     private Button addButton;
+    private Button startButton;
+    private Button pauseButton;
+    private Button stopBotton;
 }

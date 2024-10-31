@@ -34,7 +34,7 @@ static class Program {
 
     static void Render() {
         shader.Use();
-        shader.SetMatrix("u_matrix", SMatrix.CreateOrthographic(scaleInvert, scaleInvert, 0.001f, 1000f), false);
+        shader.SetMatrix("u_matrix", SMatrix.CreateOrthographic(scaleInvert * GLSWindow.GetWidth() / GLSWindow.GetHeight(), scaleInvert, 0.001f, 1000f), false);
         LantongsAnt.GetMesh().Flush();
         LantongsAnt.Step();
     }

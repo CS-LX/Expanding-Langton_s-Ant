@@ -19,6 +19,8 @@ static class Program {
         GLSWindow.RegisterOnScrollRolling(ScrollRoll);
         GLSWindow.Init(800, 800, "Langton's Ant");
 
+        LantongsAnt.Get();
+
         Form1 form1 = new();
         form1.Show();
 

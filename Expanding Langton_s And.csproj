@@ -20,6 +20,10 @@
 	  <None Update="Shader.vsh">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
+		<None Update="Operations.txt">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	  <None Remove="bin\**" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="CLITestsMyGL">

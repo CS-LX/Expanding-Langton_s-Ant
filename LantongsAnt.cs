@@ -27,6 +27,20 @@ namespace Expanding_Langton_s_And {
             ant.Move();
         }
 
+        public static void Get() {
+            if (File.Exists("Operations.txt")) {
+                operations.Clear();
+                string operationsData = File.ReadAllText("Operations.txt");
+                string[] operationItems = operationsData.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var operationText in operationItems) {
+                    string[] data = operationText.Split(' ');
+                    SColor color = new(int.Parse(data[0]), int.Parse(data[1]), int.Parse(data[2]));
+                    bool rotate = data[3] == "R";
+                    operations.Add(color, rotate);
+                }
+            }
+        }
+
         public static GLSMesh GetMesh() {
             List<GLSVertex> vertices = new();
             List<uint> indices = new();

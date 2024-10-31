@@ -37,7 +37,8 @@ namespace Expanding_Langton_s_And {
             SVector3 v4 = new(1, 0, 0);
             //添加格子
             uint index = 0;
-            foreach (var cell in gird) {
+            Dictionary<SVector2, SColor> girdCache = new(gird);
+            foreach (var cell in girdCache) {
                 vertices.Add(new GLSVertex(v1 + new SVector3(cell.Key.x, cell.Key.y, 0), cell.Value, new SVector3(0, 0, 1), new SVector2(0, 0)));
                 vertices.Add(new GLSVertex(v2 + new SVector3(cell.Key.x, cell.Key.y, 0), cell.Value, new SVector3(0, 0, 1), new SVector2(0, 1)));
                 vertices.Add(new GLSVertex(v3 + new SVector3(cell.Key.x, cell.Key.y, 0), cell.Value, new SVector3(0, 0, 1), new SVector2(1, 1)));

@@ -6,6 +6,9 @@ static class Program {
     static GLSShader shader;
     static Stopwatch stopwatch = new();
     static float scaleInvert = 10;
+    public static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    public static ManualResetEvent manualResetEvent = new ManualResetEvent(true);
+    static int steps = 0;
     public static float DeltaTime => stopwatch.ElapsedMilliseconds / 1000f;
     [STAThread]
     static void Main() {
@@ -18,6 +21,9 @@ static class Program {
 
         Form1 form1 = new();
         form1.Show();
+
+        Task.Run(LangtonSAntSimulator, cancellationTokenSource.Token);
+        manualResetEvent.Reset();
 
         while (!GLSWindow.ShouldClose()) {
             GLSWindow.Render();
@@ -36,7 +42,7 @@ static class Program {
         shader.Use();
         shader.SetMatrix("u_matrix", SMatrix.CreateOrthographic(scaleInvert * GLSWindow.GetWidth() / GLSWindow.GetHeight(), scaleInvert, 0.001f, 1000f), false);
         LantongsAnt.GetMesh().Flush();
-        LantongsAnt.Step();
+        Console.WriteLine(steps);
     }
 
     static void Close() {
@@ -45,5 +51,14 @@ static class Program {
     static void ScrollRoll(float x, float y) {
         Console.WriteLine(DeltaTime);
         scaleInvert += y * DeltaTime * 100;
+    }
+
+    static void LangtonSAntSimulator() {
+        while (steps < 1E5 && !cancellationTokenSource.IsCancellationRequested) {
+            manualResetEvent.WaitOne();
+            LantongsAnt.Step();
+            Thread.Sleep(1);
+            steps++;
+        }
     }
 }

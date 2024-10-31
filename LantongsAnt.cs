@@ -19,6 +19,7 @@ namespace Expanding_Langton_s_And {
 
             //改变格子
             int indexOfOperation = operations.TakeWhile(operation => operation.Key.r != color.r || operation.Key.g != color.g || operation.Key.b != color.b).Count();
+            indexOfOperation++;
             if (indexOfOperation == operations.Count) indexOfOperation = 0;
             gird[ant.position] = operations.ElementAt(indexOfOperation).Key;
 
@@ -42,7 +43,7 @@ namespace Expanding_Langton_s_And {
                 vertices.Add(new GLSVertex(v3 + new SVector3(cell.Key.x, cell.Key.y, 0), cell.Value, new SVector3(0, 0, 1), new SVector2(1, 1)));
                 vertices.Add(new GLSVertex(v4 + new SVector3(cell.Key.x, cell.Key.y, 0), cell.Value, new SVector3(0, 0, 1), new SVector2(1, 0)));
                 indices.AddRange([0u + index, 1u + index, 2u + index, 0u + index, 2u + index, 3u + index]);
-                index += 6;
+                index += 4;
             }
 
             //添加蚂蚁
@@ -50,10 +51,10 @@ namespace Expanding_Langton_s_And {
             SVector3 v2_Ant = new(0.2f, 0.8f, 0);
             SVector3 v3_Ant = new(0.8f, 0.8f, 0);
             SVector3 v4_Ant = new(0.8f, 0.2f, 0);
-            vertices.Add(new GLSVertex(v1_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(255, 255, 255), new SVector3(0, 0, 1), new SVector2(0, 0)));
-            vertices.Add(new GLSVertex(v2_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(255, 255, 255), new SVector3(0, 0, 1), new SVector2(0, 1)));
-            vertices.Add(new GLSVertex(v3_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(255, 255, 255), new SVector3(0, 0, 1), new SVector2(1, 1)));
-            vertices.Add(new GLSVertex(v4_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(255, 255, 255), new SVector3(0, 0, 1), new SVector2(1, 0)));
+            vertices.Add(new GLSVertex(v1_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(0, 255, 255), new SVector3(0, 0, 1), new SVector2(0, 0)));
+            vertices.Add(new GLSVertex(v2_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(0, 255, 255), new SVector3(0, 0, 1), new SVector2(0, 1)));
+            vertices.Add(new GLSVertex(v3_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(0, 255, 255), new SVector3(0, 0, 1), new SVector2(1, 1)));
+            vertices.Add(new GLSVertex(v4_Ant + new SVector3(ant.position.x, ant.position.y, 0), new SColor(0, 255, 255), new SVector3(0, 0, 1), new SVector2(1, 0)));
             indices.AddRange([0u + index, 1u + index, 2u + index, 0u + index, 2u + index, 3u + index]);
 
             return new GLSMesh(vertices.ToArray(), indices.ToArray());
@@ -67,8 +68,8 @@ namespace Expanding_Langton_s_And {
         public static SVector2[] directionAxes = [new SVector2(1, 0), new SVector2(0, -1), new SVector2(-1, 0), new SVector2(0, 1)];
 
         public void Rotate(bool r) {
-            direction += r ? 1 : 0;
-            direction %= 4;
+            direction += r ? 1 : -1;
+            direction = (direction % 4 + 4) % 4;
         }
 
         public void Move() {

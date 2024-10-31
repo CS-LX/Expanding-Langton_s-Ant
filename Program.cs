@@ -5,11 +5,12 @@ namespace Expanding_Langton_s_And;
 static class Program {
     static GLSShader shader;
     static Stopwatch stopwatch = new();
-    static float scaleInvert = 400;
+    static float scaleInvert = 150;
     public static CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     public static ManualResetEvent manualResetEvent = new ManualResetEvent(true);
-    static int steps = 0;
+    public static int steps = 0;
     public static float DeltaTime => stopwatch.ElapsedMilliseconds / 1000f;
+    static Form1 Form1;
     [STAThread]
     static void Main() {
         ApplicationConfiguration.Initialize();
@@ -21,8 +22,8 @@ static class Program {
 
         LantongsAnt.Get();
 
-        Form1 form1 = new();
-        form1.Show();
+        Form1 = new();
+        Form1.Show();
 
         Task.Run(LangtonSAntSimulator, cancellationTokenSource.Token);
         manualResetEvent.Reset();
@@ -48,7 +49,7 @@ static class Program {
         mesh.Flush();
         GC.SuppressFinalize(mesh);
         GC.Collect();
-        Console.WriteLine(steps);
+        Form1.Text = $"设置 {steps}";
     }
 
     static void Close() {
@@ -60,10 +61,11 @@ static class Program {
     }
 
     static void LangtonSAntSimulator() {
-        while (steps < 1E5 && !cancellationTokenSource.IsCancellationRequested) {
+        Random random = new Random();
+        while (steps < 1E7 && !cancellationTokenSource.IsCancellationRequested) {
             manualResetEvent.WaitOne();
             LantongsAnt.Step();
-            Thread.Sleep(1);
+            if (random.Next(1, 10) < 2) Thread.Sleep(1);
             steps++;
         }
     }

@@ -66,6 +66,7 @@ public partial class Form1 : Form {
         LantongsAnt.ant.position = new SVector2(0);
         LantongsAnt.ant.direction = 0;
         LantongsAnt.gird.Clear();
+        Program.steps = 0;
     }
 
     void PauseButtonOnClick(object? sender, EventArgs e) {

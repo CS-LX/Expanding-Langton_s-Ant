@@ -7,4 +7,17 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Update="GLMakesMeMad.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Ijwhost.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="CLITestsMyGL">
+	    <HintPath>refrences\CLITestsMyGL.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
 </Project>

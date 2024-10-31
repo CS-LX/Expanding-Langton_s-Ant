@@ -4,7 +4,7 @@ namespace Expanding_Langton_s_And {
         public static Dictionary<SColor, bool> operations = new()
         {
             {new SColor(0, 0, 0) , true},
-            {new SColor(1.0f, 1.0f, 1.0f) , false},
+            {new SColor(255, 255, 255) , false},
         };
         public static Dictionary<SVector2, SColor> gird = new();
 
@@ -20,7 +20,7 @@ namespace Expanding_Langton_s_And {
             //改变格子
             int indexOfOperation = operations.TakeWhile(operation => operation.Key.r != color.r || operation.Key.g != color.g || operation.Key.b != color.b).Count();
             indexOfOperation++;
-            if (indexOfOperation == operations.Count) indexOfOperation = 0;
+            if (indexOfOperation >= operations.Count) indexOfOperation = 0;
             gird[ant.position] = operations.ElementAt(indexOfOperation).Key;
 
             //移动蚂蚁

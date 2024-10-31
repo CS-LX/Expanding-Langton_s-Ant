@@ -31,6 +31,7 @@ static class Program {
             stopwatch.Restart();
         }
 
+        cancellationTokenSource.Cancel();
         GLSWindow.Close();
     }
 

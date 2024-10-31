@@ -21,7 +21,7 @@ namespace Expanding_Langton_s_And {
             get => value;
             set
             {
-                value = value;
+                this.value = value;
                 OnPropertyChanged(nameof(Value));
             }
         }

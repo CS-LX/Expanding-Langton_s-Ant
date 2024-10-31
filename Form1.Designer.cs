@@ -133,7 +133,7 @@ partial class Form1 {
         stopBotton.Name = "stopBotton";
         stopBotton.Size = new Size(35, 29);
         stopBotton.TabIndex = 9;
-        stopBotton.Text = "⏸️";
+        stopBotton.Text = "⏹️";
         stopBotton.UseVisualStyleBackColor = true;
         // 
         // Form1

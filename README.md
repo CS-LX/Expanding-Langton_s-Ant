@@ -1,6 +1,6 @@
 ~~这篇介绍是由程序开发者写的，chatGPT润色的~~
 
-[English Version](#Expanding-Langton's-Ant)
+[English Version](#project-overview)
 
 # 兰顿蚂蚁的扩张
 
